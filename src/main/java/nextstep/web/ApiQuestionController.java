@@ -3,10 +3,10 @@ package nextstep.web;
 import lombok.RequiredArgsConstructor;
 import nextstep.domain.Answer;
 import nextstep.domain.Question;
+import nextstep.domain.QuestionBody;
 import nextstep.domain.User;
 import nextstep.security.LoginUser;
 import nextstep.service.QnaService;
-import nextstep.web.dto.QuestionRequestDTO;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,9 +53,8 @@ public class ApiQuestionController {
     }
 
     @PutMapping("/{id}")
-    public Question update(@LoginUser User loginUser, @PathVariable long id, @Valid @RequestBody QuestionRequestDTO updatedQuestionDto) {
-        Question updatedQuestion = Question.of(updatedQuestionDto);
-        return qnaService.updateQuestion(loginUser, id, updatedQuestion);
+    public Question update(@LoginUser User loginUser, @PathVariable long id, @Valid @RequestBody QuestionBody updatedQuestionBody) {
+        return qnaService.updateQuestion(loginUser, id, updatedQuestionBody);
     }
 
     @DeleteMapping("/{id}")

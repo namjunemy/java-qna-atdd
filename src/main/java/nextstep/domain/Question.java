@@ -38,8 +38,8 @@ public class Question extends AbstractEntity implements UrlGeneratable {
         this.questionBody = new QuestionBody(title, contents);
     }
 
-    public static Question of(QuestionRequestDTO questionRequestDTO) {
-        return new Question(questionRequestDTO.getTitle(), questionRequestDTO.getContents());
+    public static QuestionBody of(QuestionBody questionBody) {
+        return new QuestionBody(questionBody.getTitle(), questionBody.getContents());
     }
 
     public String getTitle() {
@@ -73,7 +73,7 @@ public class Question extends AbstractEntity implements UrlGeneratable {
         this.answers.add(answer);
     }
 
-    public Question update(User loginUser, Question target) {
+    public Question update(User loginUser, QuestionBody target) {
         if (isDeleted()) {
             throw new ObjectDeletedException();
         }

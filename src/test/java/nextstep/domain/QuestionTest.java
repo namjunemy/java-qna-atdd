@@ -16,7 +16,7 @@ public class QuestionTest extends BaseTest {
 
         String updateTitle = "수정된 제목";
         String updateContents = "수정된 내용";
-        Question target = new Question(updateTitle, updateContents);
+        QuestionBody target = new QuestionBody(updateTitle, updateContents);
 
         // When
         question.update(LOGIN_USER, target);
@@ -37,7 +37,7 @@ public class QuestionTest extends BaseTest {
 
         String updateTitle = "수정된 제목";
         String updateContents = "수정된 내용";
-        Question target = new Question(updateTitle, updateContents);
+        QuestionBody target = new QuestionBody(updateTitle, updateContents);
 
         // When
         question.update(LOGIN_USER, target);

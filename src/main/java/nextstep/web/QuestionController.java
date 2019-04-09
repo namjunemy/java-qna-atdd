@@ -2,11 +2,11 @@ package nextstep.web;
 
 import lombok.RequiredArgsConstructor;
 import nextstep.domain.Question;
+import nextstep.domain.QuestionBody;
 import nextstep.domain.User;
 import nextstep.exception.ObjectDeletedException;
 import nextstep.security.LoginUser;
 import nextstep.service.QnaService;
-import nextstep.web.dto.QuestionRequestDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,8 +48,8 @@ public class QuestionController {
     }
 
     @PutMapping("/{id}")
-    public String update(@LoginUser User loginUser, @PathVariable long id, QuestionRequestDTO questionRequestDTO) {
-        Question target = Question.of(questionRequestDTO);
+    public String update(@LoginUser User loginUser, @PathVariable long id, QuestionBody updatedQuestionBody) {
+        QuestionBody target = Question.of(updatedQuestionBody);
         qnaService.updateQuestion(loginUser, id, target);
         return "redirect:/";
     }

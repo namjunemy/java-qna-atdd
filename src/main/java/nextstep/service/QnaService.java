@@ -5,6 +5,7 @@ import nextstep.domain.Answer;
 import nextstep.domain.AnswerRepository;
 import nextstep.domain.DeleteHistory;
 import nextstep.domain.Question;
+import nextstep.domain.QuestionBody;
 import nextstep.domain.QuestionRepository;
 import nextstep.domain.User;
 import nextstep.exception.CannotDeleteException;
@@ -35,9 +36,9 @@ public class QnaService {
     }
 
     @Transactional
-    public Question updateQuestion(User loginUser, long id, Question updatedQuestion) {
+    public Question updateQuestion(User loginUser, long id, QuestionBody updatedQuestionBody) {
         Question original = findQuestionById(id);
-        return original.update(loginUser, updatedQuestion);
+        return original.update(loginUser, updatedQuestionBody);
     }
 
     @Transactional

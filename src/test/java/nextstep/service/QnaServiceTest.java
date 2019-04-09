@@ -3,6 +3,7 @@ package nextstep.service;
 import nextstep.domain.Answer;
 import nextstep.domain.AnswerRepository;
 import nextstep.domain.Question;
+import nextstep.domain.QuestionBody;
 import nextstep.domain.QuestionRepository;
 import nextstep.domain.User;
 import nextstep.exception.UnAuthorizedException;
@@ -86,7 +87,7 @@ public class QnaServiceTest extends BaseTest {
         question.writeBy(writer);
 
         //then
-        qnaService.updateQuestion(loginUser, ID_TWO, question);
+        qnaService.updateQuestion(loginUser, ID_TWO, new QuestionBody("제목 수정", "내용 수정"));
     }
 
     @Test(expected = UnAuthorizedException.class)
@@ -98,7 +99,7 @@ public class QnaServiceTest extends BaseTest {
 
         when(questionRepository.findByIdAndDeletedFalse(ID_ONE)).thenReturn(Optional.of(question));
 
-        qnaService.updateQuestion(loginUser, ID_ONE, question);
+        qnaService.updateQuestion(loginUser, ID_ONE, new QuestionBody("제목 수정", "내용 수정"));
     }
 
     @Test
@@ -107,7 +108,7 @@ public class QnaServiceTest extends BaseTest {
 
         when(questionRepository.findByIdAndDeletedFalse(ID_ONE)).thenReturn(Optional.of(question));
 
-        qnaService.updateQuestion(loginUser, ID_ONE, new Question("제목 수정", "내용 수정"));
+        qnaService.updateQuestion(loginUser, ID_ONE, new QuestionBody("제목 수정", "내용 수정"));
         softly.assertThat(question.getTitle()).isEqualTo("제목 수정");
         softly.assertThat(question.getContents()).isEqualTo("내용 수정");
     }
